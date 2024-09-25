@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Outlet } from "react-router-dom";
+import { useNavigate, Link, Outlet } from "react-router-dom";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { AiOutlineDashboard } from "react-icons/ai";
 import { 
@@ -14,7 +13,7 @@ import { BiCategory } from "react-icons/bi";
 import { FaPlus } from "react-icons/fa";
 import { GoChecklist } from "react-icons/go";
 import { ImBlog } from "react-icons/im";
-
+import { IoIosNotifications } from "react-icons/io";
 import { Button, Layout, Menu, theme } from "antd";
 
 const { Header, Sider, Content } = Layout;
@@ -83,7 +82,7 @@ const MainLayout = () => {
               label: 'Blog',
               children: [
                 {
-                  key: "add-blog",
+                  key: "blog",
                   icon: <FaPlus className="fs-4"/>,
                   label: "Add Blog",
                 },
@@ -93,12 +92,12 @@ const MainLayout = () => {
                   label: "Blog List",
                 },
                 {
-                  key: "add-blog-category",
+                  key: "blog-category",
                   icon: <FaPlus className="fs-4"/>,
                   label: "Add Blog Category",
                 },
                 {
-                  key: "category-list",
+                  key: "blog-category-list",
                   icon: <BiCategory className="fs-4"/>,
                   label: "Category List",
                 },
@@ -131,8 +130,13 @@ const MainLayout = () => {
               height: 64,
             }}
           />
-          <div className="d-flex gap-3 align-items-center">
-            <div></div>
+          <div className="d-flex gap-4 align-items-center">
+            <div className="position-relative">
+              <IoIosNotifications className="fs-4"/>
+              <span className="badge bg-warning rounded-circle p-1 position-absolute">
+                3
+              </span>
+            </div>
             <div className="d-flex gap-3 align-items-center">
               <div>
                 <img 
@@ -141,9 +145,34 @@ const MainLayout = () => {
                   src="images/logo-1.png" 
                   alt="logo-1"/>
               </div>
-              <div>
+              <div
+                role="button"
+                id="dropdownMenuLink"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
                 <h5 className="mb-0">AriellaDP</h5>
                 <p className="mb-0">arielladispras@gmail.com</p>
+              </div>
+              <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li>
+                  <Link 
+                    className="dropdown-item py-1 mb-1" 
+                    style={{ height: "auto", lineHeight: "20px" }} 
+                    to="/"
+                  >
+                    View Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    className="dropdown-item py-1 mb-1" 
+                    style={{ height: "auto", lineHeight: "20px" }} 
+                    to="/"
+                  >
+                    Sign Out
+                  </Link>
+                </li>
               </div>
             </div>
           </div>
